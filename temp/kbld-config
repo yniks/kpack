@@ -1,0 +1,49 @@
+  apiVersion: kbld.k14s.io/v1alpha1
+  kind: Config
+  sources:
+  - image: controller
+    path: cmd/controller
+    ko:
+      build:
+        rawOptions: [--disable-optimizations,--platform=linux/amd64,linux/arm64]
+  - image: webhook
+    path: cmd/webhook
+    ko:
+      build:
+        rawOptions: [--disable-optimizations,--platform=linux/amd64,linux/arm64]
+  - image: build-init
+    path: cmd/build-init
+    ko:
+      build:
+        rawOptions: [--disable-optimizations,--platform=linux/amd64,linux/arm64]
+  - image: build-waiter
+    path: cmd/build-waiter
+    ko:
+      build:
+        rawOptions: [--disable-optimizations,--platform=linux/amd64,linux/arm64]
+  - image: rebase
+    path: cmd/rebase
+    ko:
+      build:
+        rawOptions: [--disable-optimizations,--platform=linux/amd64,linux/arm64]
+  - image: completion
+    path: cmd/completion
+    ko:
+      build:
+        rawOptions: [--disable-optimizations,--platform=linux/amd64,linux/arm64]
+  overrides:
+  - image: lifecycle
+    newImage: mirror.gcr.io/buildpacksio/lifecycle
+  destinations:
+  - image: controller
+    newImage: harbor.yniks.dev/kpack-arm/controller
+  - image: webhook
+    newImage: harbor.yniks.dev/kpack-arm/webhook
+  - image: build-init
+    newImage: harbor.yniks.dev/kpack-arm/build-init
+  - image: build-waiter
+    newImage: harbor.yniks.dev/kpack-arm/build-waiter
+  - image: rebase
+    newImage: harbor.yniks.dev/kpack-arm/rebase
+  - image: completion
+    newImage: harbor.yniks.dev/kpack-arm/completion

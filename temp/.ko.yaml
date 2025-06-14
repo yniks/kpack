@@ -1,0 +1,8 @@
+  defaultBaseImage: paketobuildpacks/run-jammy-tiny
+
+  builds:
+  - id: controller
+    ldflags:
+    - -X github.com/pivotal/kpack/pkg/apis/build/v1alpha2.CompletionCommand=/ko-app/completion
+    - -X github.com/pivotal/kpack/pkg/apis/build/v1alpha2.PrepareCommand=/ko-app/build-init
+    - -X github.com/pivotal/kpack/pkg/apis/build/v1alpha2.RebaseCommand=/ko-app/rebase
